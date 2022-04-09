@@ -1,0 +1,196 @@
+# Default rules: https://github.com/detekt/detekt/blob/v1.10.0/detekt-core/src/main/resources/default-detekt-config.yml
+# Basically, almost all rules that are turned off by default have been turned on here, except for the following:
+# * `naming.MatchingDeclarationName` turned off - we prefer consistent file naming across all packages
+# * `style.ForbiddenComment` turned off - since there is nothing bad about T0D0 and F1XME comments
+# * `style.UseIfInsteadOfWhen` kept turned off - we consider `when` often more concise than `if`
+# **Note** that detekt does not merge lists - default list entries have to be copied
+
+comments:
+  active: false # all comment rules are inactive by default anyway
+
+complexity:
+  ComplexInterface:
+    active: true
+  LabeledExpression:
+    active: true
+  LongParameterList:
+    active: true
+    excludes: [ '**/*Repository.kt', '**/*Test.kt', '**/test/**/*.kt' ]
+  LongMethod:
+    active: true
+    excludes: [ '**/*Test.kt' ]
+  MethodOverloading:
+    active: true
+  StringLiteralDuplication:
+    active: true
+  TooManyFunctions:
+    ignorePrivate: true # no need to add up private functions
+
+coroutines:
+  active: true
+
+exceptions:
+  ExceptionRaisedInUnexpectedLocation:
+    active: true
+  InstanceOfCheckForException:
+    active: true
+  NotImplementedDeclaration:
+    active: true
+  PrintStackTrace:
+    active: true
+  RethrowCaughtException:
+    active: true
+  ReturnFromFinally:
+    active: true
+  SwallowedException:
+    active: true
+    ignoredExceptionTypes:
+      # default
+      - InterruptedException
+      - NumberFormatException
+      - ParseException
+      - MalformedURLException
+  ThrowingExceptionFromFinally:
+    active: true
+  ThrowingExceptionInMain:
+    active: true
+  ThrowingExceptionsWithoutMessageOrCause:
+    active: true
+  ThrowingNewInstanceOfSameException:
+    active: true
+
+formatting:
+  active: false # ktlint already handled by spotless
+
+naming:
+  MemberNameEqualsClassName:
+    active: true
+    excludes: [ '**/*Test.kt', '**/test/**/*.kt' ]
+  ForbiddenClassName:
+    active: true
+    forbiddenName:
+      - Util
+      - Helper
+  FunctionMaxLength:
+    active: true
+    maximumFunctionNameLength: 50 # default 30 is too short to be expressive in bean declaration
+  FunctionMinLength:
+    active: true
+  InvalidPackageDeclaration:
+    active: true
+  MatchingDeclarationName:
+    active: false
+  VariableMaxLength:
+    active: true
+  VariableMinLength:
+    active: true
+
+potential-bugs:
+  Deprecation:
+    active: true
+  HasPlatformType:
+    active: true
+  IgnoredReturnValue:
+    active: true
+  ImplicitDefaultLocale:
+    active: true
+  ImplicitUnitReturnType:
+    active: true
+  LateinitUsage:
+    active: true
+  MapGetWithNotNullAssertionOperator:
+    active: true
+  UnconditionalJumpStatementInLoop:
+    active: true
+  UnnecessaryNotNullOperator:
+    active: true
+  UnnecessarySafeCall:
+    active: true
+  UnsafeCast:
+    active: true
+  UselessPostfixExpression:
+    active: true
+
+style:
+  MaxLineLength:
+    active: true
+    excludes: [ '**/*Test.kt', '**/test/**/*.kt', '**/test/*.kt' ]
+  CollapsibleIfStatements:
+    active: true
+  DataClassContainsFunctions:
+    active: false
+  DataClassShouldBeImmutable:
+    active: true
+  EqualsOnSignatureLine:
+    active: true
+  ExplicitCollectionElementAccessMethod:
+    active: true
+  ExplicitItLambdaParameter:
+    active: true
+  ExpressionBodySyntax:
+    active: true
+  ForbiddenComment:
+    active: false
+  ForbiddenImport:
+    active: true
+  ForbiddenMethodCall:
+    active: true
+  ForbiddenPublicDataClass:
+    active: true
+  ForbiddenVoid:
+    active: true
+  MandatoryBracesIfStatements:
+    active: true
+  MandatoryBracesLoops:
+    active: true
+  NestedClassesVisibility:
+    active: true
+  NoTabs:
+    active: true
+  OptionalUnit:
+    active: true
+    excludes: [ '**/*Test.kt', '**/test/**/*.kt' ]
+  OptionalWhenBraces:
+    active: true
+  PreferToOverPairSyntax:
+    active: true
+  RedundantExplicitType:
+    active: true
+  RedundantVisibilityModifierRule:
+    active: true
+  SerialVersionUIDInSerializableClass:
+    active: true
+  SpacingBetweenPackageAndImports:
+    active: true
+  TrailingWhitespace:
+    active: true
+  UnderscoresInNumericLiterals:
+    active: false
+  UnnecessaryAnnotationUseSiteTarget:
+    active: true
+  UnnecessaryApply:
+    active: true
+  UnnecessaryLet:
+    active: true
+  UnnecessaryParentheses:
+    active: true
+  UntilInsteadOfRangeTo:
+    active: true
+  UnusedImports:
+    active: true
+  UnusedPrivateMember:
+    active: true
+    excludes: [ '**/*Test.kt', '**/test/**/*.kt' ]
+  UseArrayLiteralsInAnnotations:
+    active: true
+  UseCheckOrError:
+    active: true
+  UseDataClass:
+    active: true
+    excludes: [ '**/*Test.kt', '**/test/**/*.kt', '**/test/*.kt' ]
+  UseIfInsteadOfWhen:
+    active: false
+  UseRequire:
+    active: true
+  VarCouldBeVal:
+    active: true

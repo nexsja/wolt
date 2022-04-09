@@ -1,0 +1,83 @@
+### Example from the task
+POST http://localhost:8080/api/v1/format/human-readable
+Content-Type: application/json
+
+{
+  "monday": [],
+  "tuesday": [
+    {
+      "type": "open",
+      "value": 36000
+    },
+    {
+      "type": "close",
+      "value": 64800
+    }
+  ],
+  "wednesday": [],
+  "thursday": [
+    {
+      "type": "open",
+      "value": 37800
+    },
+    {
+      "type": "close",
+      "value": 64800
+    }
+  ],
+  "friday": [
+    {
+      "type": "open",
+      "value": 36000
+    }
+  ],
+  "saturday": [
+    {
+      "type": "close",
+      "value": 3600
+    },
+    {
+      "type": "open",
+      "value": 36000
+    }
+  ],
+  "sunday": [
+    {
+      "type": "close",
+      "value": 3600
+    },
+    {
+      "type": "open",
+      "value": 43200
+    },
+    {
+      "type": "close",
+      "value": 75600
+    }
+  ]
+}
+
+### Empty list returns 'Closed' for all days
+
+POST http://localhost:8080/api/v1/format/human-readable
+Content-Type: application/json
+
+{}
+
+### Incomplete list works
+
+POST http://localhost:8080/api/v1/format/human-readable
+Content-Type: application/json
+
+{
+  "thursday": [
+    {
+      "type": "open",
+      "value": 3600
+    },
+    {
+      "type": "close",
+      "value": 75600
+    }
+  ]
+}

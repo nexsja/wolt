@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  woltapp:
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    ports:
+      - "8080:8080"
+
