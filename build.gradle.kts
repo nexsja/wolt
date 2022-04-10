@@ -13,8 +13,8 @@ plugins {
     kotlin("plugin.spring") version kotlinVersion
 
     // Code Quality
-    id("io.gitlab.arturbosch.detekt") version "1.19.0" // Nov 2021
-    id("org.jmailen.kotlinter") version "3.8.0" // Dec 2021
+    id("io.gitlab.arturbosch.detekt") version "1.19.0"
+    id("org.jmailen.kotlinter") version "3.8.0"
 }
 
 group = "lv.alexn"
@@ -25,21 +25,11 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("reflect"))
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    // Spring
     implementation(springBoot("web"))
     implementation(springBoot("validation"))
 
-    testImplementation(springBoot("test")) {
-        exclude(group = "com.vaadin.external.google")
-    }
-    testImplementation("org.json:json:20211205")
-    testImplementation("com.github.tomakehurst:wiremock-jre8:2.32.0")
+    testImplementation(springBoot("test"))
 }
 
 fun springBoot(module: String) = "org.springframework.boot:spring-boot-starter-$module"

@@ -1,41 +1,16 @@
 package lv.alexn.wolt.application
 
-enum class Weekday(val formatted: String) {
-    MONDAY("Monday"),
-    TUESDAY("Tuesday"),
-    WEDNESDAY("Wednesday"),
-    THURSDAY("Thursday"),
-    FRIDAY("Friday"),
-    SATURDAY("Saturday"),
-    SUNDAY("Sunday");
-}
+import java.time.DayOfWeek
 
 enum class TimeType {
-    Open,
-    Close
+    OPEN,
+    CLOSE
 }
 
-data class OperatingHourEvent(val type: TimeType, val value: Int)
-data class FlattenedSchedule(val day: Weekday, val rawSchedule: OperatingHourEvent)
-data class FlattenedOpeningHours(val day: Weekday, val open: Int, val close: Int)
+data class ScheduleEvent(val type: TimeType, val value: Int)
+data class FlattenedScheduleDayEvent(val day: DayOfWeek, val event: ScheduleEvent)
+data class FlattenedOpeningHours(val day: DayOfWeek, val open: Int, val close: Int)
 
-data class Schedule(
-    val monday: List<OperatingHourEvent> = emptyList(),
-    val tuesday: List<OperatingHourEvent> = emptyList(),
-    val wednesday: List<OperatingHourEvent> = emptyList(),
-    val thursday: List<OperatingHourEvent> = emptyList(),
-    val friday: List<OperatingHourEvent> = emptyList(),
-    val saturday: List<OperatingHourEvent> = emptyList(),
-    val sunday: List<OperatingHourEvent> = emptyList()
-) {
+typealias Schedule = Map<DayOfWeek, List<ScheduleEvent>>
 
-    fun getDay(day: Weekday) = when (day) {
-        Weekday.MONDAY -> monday
-        Weekday.TUESDAY -> tuesday
-        Weekday.WEDNESDAY -> wednesday
-        Weekday.THURSDAY -> thursday
-        Weekday.FRIDAY -> friday
-        Weekday.SATURDAY -> saturday
-        Weekday.SUNDAY -> sunday
-    }
-}
+fun Schedule.getEvents(day: DayOfWeek) = this[day] ?: emptyList()

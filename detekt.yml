@@ -25,6 +25,8 @@ complexity:
     active: true
   TooManyFunctions:
     ignorePrivate: true # no need to add up private functions
+  ComplexCondition:
+    threshold: 5
 
 coroutines:
   active: true
